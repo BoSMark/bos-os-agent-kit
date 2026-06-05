@@ -2,7 +2,7 @@
 
 A toolkit for running AI agents on real work, without the chaos of ad hoc adoption, in the BoS OS.
 
-Three components. They work together.
+**Three interview-driven agents, one pipeline: _shape_ the mission → _staff_ it → _deliver_ it.**
 
 ---
 
@@ -14,43 +14,51 @@ This kit gives you the coordination layer that prevents that.
 
 ---
 
-## What's In Here
+## The three agents
 
-### 1. Mission Planner (agent spec)
-`/agent-specs/mission-planner.md`
+### 1. Mission Shaper — *shape the mission*
+`/agent-specs/mission-shaper.md` · template: `/mission-templates/mission-brief.md`
 
-An interview-driven agent that turns a vague goal into a scoped mission: named agents, phased rollout, state files, success criteria. Run it before starting any significant piece of agent work.
+An interview agent that coaches a rough idea into a sharp, measurable **Mission Brief** — by making the person do the thinking, not by writing it for them (coach, not consultant).
 
-**Input:** A goal ("launch a founder community programme")  
-**Output:** A `MISSION.md` with phases, agents, and entry/exit criteria
+**The process it runs:** orients you on what to expect → interrogates the idea (outcome vs. activity · commit vs. explore · time-bound vs. ongoing · what needs *guarding*, both risk and voice/messaging · the capabilities the work requires) → synthesises the brief in your own words for you to correct.
 
----
+**Input:** a rough goal, in your own words → **Output:** `MISSION-BRIEF.md`
 
-### 2. Delivery Manager (agent spec)
+### 2. Agent Planner — *staff the mission*
+`/agent-specs/agent-planner.md`
+
+Takes the Mission Brief and **staffs the mission** — casts the agent team the way you'd hire one, then specs each role to a runnable standard. Competency roles, not task-bots, so the agents compound across missions.
+
+**The process it runs:** casts the team (*"if you were hiring people to run this, who would you hire?"*) → specs each role one at a time (role · type · decision boundary · escalation triggers · evaluation · model tier) → plans the prioritised backlog.
+
+**Input:** `MISSION-BRIEF.md` → **Output:** agent specs in `03_AGENTS/` + a prioritised `todo.md`
+
+It is the **canonical successor to the Agent Spec Builder** (below): it both *casts* and *specs*.
+
+### 3. Delivery Manager — *deliver the mission*
 `/agent-specs/delivery-manager.md`
 
-Runs the task backlog loop every working session. Moves work from `todo → in-progress → blocked/done`. Its most important output is `blocked.md` — a clean, specific decision queue that tells the human exactly what needs their judgment, with options and a recommendation.
+Drives each deliverable from high-level goal to a running, validated system — and runs the day-to-day backlog. It is a **challenger**: it keeps you at decision altitude and out of the weeds, redirecting premature detail and lifting a one-off symptom to the systemic cause that should be fixed once.
 
-**Runs:** Every session on any active mission  
-**Feeds from:** Mission Planner (`todo.md`)  
-**Feeds to:** Retro agent at close (`done.md`)
+**The process it runs — two modes:**
+- **Build mode** (per system): `decompose → discover → ▸RECOMMEND gate → specify (+ acceptance tests) → build → ▸QA gate → operate`. Only the two gates reach you; the agents do the legwork.
+- **Operate mode** (per session): `stand-up → pull → block → complete → wrap-up`, with `blocked.md` as the human decision queue and decision-boundary audit.
 
----
-
-### 3. Agent Spec Builder (skill)
-`/skills/agent-spec-builder/SKILL.md`
-
-An interview-driven skill that takes one named agent and produces a finished, runnable spec — role, type, decision boundary, escalation triggers, evaluation criteria. Installable as a Cowork skill or usable as a prompt in any Claude session.
+**Input:** the agent team + `todo.md` → **Output:** built & validated systems · `blocked.md` (your decisions) · `done.md`
 
 ---
 
-### State File Templates
+### Superseded — kept for reference
+- **Mission Planner** (`/agent-specs/mission-planner.md`) — the original all-in-one. Its *shaping* role is now the Mission Shaper; its *casting/planning* role is now the Agent Planner.
+- **Agent Spec Builder** (`/skills/agent-spec-builder/SKILL.md`) — the earlier per-agent spec builder, now absorbed into the Agent Planner.
+
+### State file templates
 `/mission-templates/`
-
-The four files the Delivery Manager reads and writes. Copy into any mission folder to get started.
 
 | File | Purpose |
 |------|---------|
+| `mission-brief.md` | The Mission Shaper's deliverable — the shaped mission |
 | `todo.md` | Prioritised backlog |
 | `in-progress.md` | What's being worked now |
 | `blocked.md` | Human decision queue |
@@ -58,35 +66,53 @@ The four files the Delivery Manager reads and writes. Copy into any mission fold
 
 ---
 
-## How They Fit Together
+## How they fit together
 
 ```
-Mission Planner
-  → produces MISSION.md + todo.md
-      ↓
-Delivery Manager (runs every session)
-  → pulls from todo.md
-  → surfaces blocked.md (your decision queue)
-  → writes done.md
-      ↓
-Retro Agent (at mission close)
-  → reads done.md
+Mission Shaper        →  MISSION-BRIEF.md
+  shape the mission        (outcome · measure · shape · guarding · capabilities · gaps)
+        ↓
+Agent Planner         →  agent specs (03_AGENTS/) + todo.md
+  staff the mission        (the team, each role specced)
+        ↓
+Delivery Manager      →  built & validated systems · blocked.md · done.md
+  deliver the mission
+     ├─ build mode:    decompose → discover → ▸RECOMMEND → specify(+tests) → build → ▸QA → operate
+     └─ operate mode:  stand-up → pull → block → complete → wrap-up
+        ↓
+Retro Agent (at close)   →  reads done.md      [forthcoming]
 ```
 
-Agent Spec Builder sits upstream of all of this — use it to spec any agent before adding it to a mission.
+Each agent is **bounded**: the Shaper shapes (it doesn't cast), the Planner casts and specs (it doesn't run), the Delivery Manager delivers and runs (it doesn't re-shape). Outputs flow into inputs; one artefact hands to the next.
 
 ---
 
-## How to Use
+## How to use
 
-**To spec a new agent:**
-Load `skills/agent-spec-builder/SKILL.md` into your Claude session. Name the agent. Answer the interview.
+1. **Shape** — load `agent-specs/mission-shaper.md`, describe your idea in your own words → `MISSION-BRIEF.md`.
+2. **Staff** — load `agent-specs/agent-planner.md`, point it at the brief → agent specs + `todo.md`.
+3. **Deliver** — copy the state-file templates into your mission folder, load `agent-specs/delivery-manager.md` each session → it decomposes, runs the gates, and runs the backlog.
 
-**To plan a mission:**
-Load `agent-specs/mission-planner.md` into your Claude session. Describe your goal. It will interview you to produce a `MISSION.md` and initial `todo.md`.
+Each spec is plain markdown — load it in any Claude session, or install as a Cowork skill.
 
-**To run a mission:**
-Copy the four state file templates into your mission folder. Load `agent-specs/delivery-manager.md` at the start of each session. It runs the stand-up, pulls work, surfaces blocks.
+---
+
+## Grounded in established practice
+
+These agents aren't invented from scratch — each design choice reflects a long-standing discipline in requirements engineering, product discovery, and project management. The mapping:
+
+| Design choice | Established practice | Source |
+|---|---|---|
+| Make the outcome explicit; "write the success announcement first" | Amazon **Working Backwards / PR-FAQ**; **outcome-vs-output** (OKRs) | widely documented |
+| Commit-vs-explore as a deliberate, crossable point | **dual-track agile** — the *commitment point* | [Dual-track / continuous discovery](https://blog.logrocket.com/product-management/dual-track-agile-continuous-discovery/) |
+| Coach, don't consult — build the person's judgment | **coaching vs. consulting** | widely documented |
+| Cast agents by refining goals until each is one agent's responsibility | **Goal-Oriented RE / KAOS** (goals → sub-goals → assign to a single agent) | [KAOS](https://www.utdallas.edu/~chung/SYSM6309/KAOS-AORE.pdf) · [GORE overview](https://www.cs.utoronto.ca/~alexei/pub/Lapouchnian-Depth.pdf) |
+| Decompose a deliverable into systems, by function | **functional decomposition** (structured analysis) | [Functional decomposition](https://www.datacamp.com/tutorial/functional-decomposition) · [Requirements decomposition](https://argondigital.com/blog/product-management/requirements-decomposition/) |
+| 100% coverage, deliverable-oriented, nothing extra | **Work Breakdown Structure** — the *100% rule* | [WBS](https://en.wikipedia.org/wiki/Work_breakdown_structure) |
+| Discover and validate the cheapest way before building | **continuous discovery** (Cagan, Torres) | [Dual-track / continuous discovery](https://blog.logrocket.com/product-management/dual-track-agile-continuous-discovery/) |
+| Review gates as go/no-go investment decisions | **Stage-Gate** (Cooper) | [Stage-Gate](https://www.toolshero.com/innovation/stage-gate-process/) |
+| Acceptance tests defined at spec time; *verify* vs *validate* | **V-model** | [V-model V&V](https://www.coleyconsulting.co.uk/v-model-verification-and-validation.htm) |
+| Detail the current wave only; keep the rest at altitude | **progressive elaboration / rolling-wave** | [WBS](https://en.wikipedia.org/wiki/Work_breakdown_structure) |
 
 ---
 
@@ -104,7 +130,7 @@ Adapt the governing document references in each spec to point to your own system
 
 ## Compatibility
 
-Designed for use with Claude (Anthropic) in Cowork mode or via Claude Code. The agent specs are plain markdown — they work in any Claude session. The Agent Spec Builder is packaged as a `.skill` file for Cowork users and as a plain `SKILL.md` for everyone else.
+Designed for use with Claude (Anthropic) in Cowork mode or via Claude Code. The agent specs are plain markdown — they work in any Claude session, and can be installed as Cowork skills or used as prompts.
 
 ---
 
