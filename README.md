@@ -1,145 +1,121 @@
-# Agent OS Starter Kit
+# BoS-OS-Start
 
-A toolkit for running AI agents on real work, without the chaos of ad hoc adoption, in the BoS OS.
+The BoS Agent OS helps you understand and manage your company operating system.
 
-**Three interview-driven agents, one pipeline: _shape_ the mission → _staff_ it → _deliver_ it.**
+Most companies add AI tools on top of an operating system nobody has written down. Strategy lives in the founder's head. Roles blur. Decisions don't stick. AI amplifies whatever's already there — clarity becomes velocity; muddle becomes noise.
 
----
-
-## The Problem
-
-Most teams adopting AI agents hit the same wall: agents that act when they shouldn't, ask when they should act, and produce work state that lives in someone's head rather than in files. Sessions start with archaeology. Decisions get made by whoever's paying attention.
-
-This kit gives you the coordination layer that prevents that.
+These three skills fix the foundation first.
 
 ---
 
-## The three agents
+## What's here
 
-### 1. Mission Shaper — *shape the mission*
-`/agent-specs/mission-shaper.md` · template: `/mission-templates/mission-brief.md`
+This repo contains three skills that build, refine, and operate your company Agent OS:
 
-An interview agent that coaches a rough idea into a sharp, measurable **Mission Brief** — by making the person do the thinking, not by writing it for them (coach, not consultant).
+**Bootstrap** — models your company OS from public information in under an hour. It produces a first draft of your strategy layer, agent roles, and decision governance. Your folder structure becomes your system. The files become the memory. Think of it as the AI doing its homework on your company before you meet.
 
-**The process it runs:** orients you on what to expect → interrogates the idea (outcome vs. activity · commit vs. explore · time-bound vs. ongoing · what needs *guarding*, both risk and voice/messaging · the capabilities the work requires) → synthesises the brief in your own words for you to correct.
+**Workshop** — helps you refine what Bootstrap produced. It works with your insider knowledge — challenging assumptions, sharpening priorities, and turning the skeleton into something that reflects how you actually run the business. As you work through it, the AI starts to understand your strategic goals, identify gaps, and surface opportunities and threats specific to your business.
 
-**Input:** a rough goal, in your own words → **Output:** `MISSION-BRIEF.md`
+**Run** — gives you the coordination layer to operate the OS day to day. Three agents, one pipeline: a Mission Shaper that coaches a rough idea into a sharp, measurable Mission Brief; an Agent Planner that staffs the mission by casting and speccing the agent team; and a Delivery Manager that drives each deliverable to completion and runs the day-to-day backlog.
 
-### 2. Agent Planner — *staff the mission*
-`/agent-specs/agent-planner.md`
+Use them in sequence. Bootstrap first, Workshop second, Run when you're ready to operate.
 
-Takes the Mission Brief and **staffs the mission** — casts the agent team the way you'd hire one, then specs each role to a runnable standard. Competency roles, not task-bots, so the agents compound across missions.
-
-**The process it runs:** casts the team (*"if you were hiring people to run this, who would you hire?"*) → specs each role one at a time (role · type · decision boundary · escalation triggers · evaluation · model tier) → plans the prioritised backlog.
-
-**Input:** `MISSION-BRIEF.md` → **Output:** agent specs in `03_AGENTS/` + a prioritised `todo.md`
-
-It is the **canonical successor to the Agent Spec Builder** (below): it both *casts* and *specs*.
-
-### 3. Delivery Manager — *deliver the mission*
-`/agent-specs/delivery-manager.md`
-
-Drives each deliverable from high-level goal to a running, validated system — and runs the day-to-day backlog. It is a **challenger**: it keeps you at decision altitude and out of the weeds, redirecting premature detail and lifting a one-off symptom to the systemic cause that should be fixed once.
-
-**The process it runs — two modes:**
-- **Build mode** (per system): `decompose → discover → ▸RECOMMEND gate → specify (+ acceptance tests) → build → ▸QA gate → operate`. Only the two gates reach you; the agents do the legwork.
-- **Operate mode** (per session): `stand-up → pull → block → complete → wrap-up`, with `blocked.md` as the human decision queue and decision-boundary audit.
-
-**Input:** the agent team + `todo.md` → **Output:** built & validated systems · `blocked.md` (your decisions) · `done.md`
+> **In plain English:** Bootstrap creates; Workshop refines; Run operates. If Bootstrap gives you the map and Workshop helps you navigate it, Run is how you drive.
 
 ---
 
-### Superseded — kept for reference
-- **Mission Planner** (`/agent-specs/mission-planner.md`) — the original all-in-one. Its *shaping* role is now the Mission Shaper; its *casting/planning* role is now the Agent Planner.
-- **Agent Spec Builder** (`/skills/agent-spec-builder/SKILL.md`) — the earlier per-agent spec builder, now absorbed into the Agent Planner.
+## How it works
 
-### State file templates
-`/mission-templates/`
+Every company already has an operating system. Most just don't know what's in it.
 
-| File | Purpose |
-|------|---------|
-| `mission-brief.md` | The Mission Shaper's deliverable — the shaped mission |
-| `todo.md` | Prioritised backlog |
-| `in-progress.md` | What's being worked now |
-| `blocked.md` | Human decision queue |
-| `done.md` | Completed work |
+[![Every Company OS Ever](images/Every_Company_OS.png)](images/Every_Company_OS.png)
+
+The BoS Agent OS maps that structure — then gives AI a governed place inside it.
+
+[![The same structure with AI inside](images/Company_OS_With_AI.png)](images/Company_OS_With_AI.png)
+
+Your folder structure is your system. The files are the memory.
 
 ---
 
-## How they fit together
+## Getting started
 
-```
-Mission Shaper        →  MISSION-BRIEF.md
-  shape the mission        (outcome · measure · shape · guarding · capabilities · gaps)
-        ↓
-Agent Planner         →  agent specs (03_AGENTS/) + todo.md
-  staff the mission        (the team, each role specced)
-        ↓
-Delivery Manager      →  built & validated systems · blocked.md · done.md
-  deliver the mission
-     ├─ build mode:    decompose → discover → ▸RECOMMEND → specify(+tests) → build → ▸QA → operate
-     └─ operate mode:  stand-up → pull → block → complete → wrap-up
-        ↓
-Retro Agent (at close)   →  reads done.md      [forthcoming]
-```
+**Prerequisites:** Claude Pro subscription · Cowork mode enabled
 
-Each agent is **bounded**: the Shaper shapes (it doesn't cast), the Planner casts and specs (it doesn't run), the Delivery Manager delivers and runs (it doesn't re-shape). Outputs flow into inputs; one artefact hands to the next.
+1. Open Claude in Cowork mode
+2. **Before anything else: create a project and select a folder.** Go to Projects → New Project → select a folder on your computer. This is not optional. Without a project, nothing saves and you will need to start over.
+3. Go to Customize → Skills
+4. Install the **Bootstrap** skill from this repo
+5. Run it on your company — it will ask you questions and build your OS draft
+6. Install the **Workshop** skill when you're ready to go deeper
+7. Install the **Run** skills when you're ready to operate missions with agents
 
----
+Full installation instructions are in each skill folder.
 
-## How to use
+> **Project setup check — do this before you run Bootstrap:**
+>
+> - Are you inside a Cowork project? (Check the top of the Cowork window — you should see a project name, not just "Claude")
+> - Have you selected a folder? (You should see your folder name below the project name)
+> - Is that folder inside a cloud-synced location (Dropbox, Google Drive, etc.)?
+>
+> If you can't answer yes to all three, stop and sort setup first. Running Bootstrap without a project is the most common reason people need to start over.
 
-1. **Shape** — load `agent-specs/mission-shaper.md`, describe your idea in your own words → `MISSION-BRIEF.md`.
-2. **Staff** — load `agent-specs/agent-planner.md`, point it at the brief → agent specs + `todo.md`.
-3. **Deliver** — copy the state-file templates into your mission folder, load `agent-specs/delivery-manager.md` each session → it decomposes, runs the gates, and runs the backlog.
-
-Each spec is plain markdown — load it in any Claude session, or install as a Cowork skill.
+**File storage:** Your OS files live in whatever folder you selected when setting up Cowork. For safety, put that folder inside Dropbox, Google Drive, or another cloud sync service — that way your files are backed up and accessible from any machine.
 
 ---
 
-## Grounded in established practice
+## A note on RFCs
 
-These agents aren't invented from scratch — each design choice reflects a long-standing discipline in requirements engineering, product discovery, and project management. The mapping:
-
-| Design choice | Established practice | Source |
-|---|---|---|
-| Make the outcome explicit; "write the success announcement first" | Amazon **Working Backwards / PR-FAQ**; **outcome-vs-output** (OKRs) | widely documented |
-| Commit-vs-explore as a deliberate, crossable point | **dual-track agile** — the *commitment point* | [Dual-track / continuous discovery](https://blog.logrocket.com/product-management/dual-track-agile-continuous-discovery/) |
-| Coach, don't consult — build the person's judgment | **coaching vs. consulting** | widely documented |
-| Cast agents by refining goals until each is one agent's responsibility | **Goal-Oriented RE / KAOS** (goals → sub-goals → assign to a single agent) | [KAOS](https://www.utdallas.edu/~chung/SYSM6309/KAOS-AORE.pdf) · [GORE overview](https://www.cs.utoronto.ca/~alexei/pub/Lapouchnian-Depth.pdf) |
-| Decompose a deliverable into systems, by function | **functional decomposition** (structured analysis) | [Functional decomposition](https://www.datacamp.com/tutorial/functional-decomposition) · [Requirements decomposition](https://argondigital.com/blog/product-management/requirements-decomposition/) |
-| 100% coverage, deliverable-oriented, nothing extra | **Work Breakdown Structure** — the *100% rule* | [WBS](https://en.wikipedia.org/wiki/Work_breakdown_structure) |
-| Discover and validate the cheapest way before building | **continuous discovery** (Cagan, Torres) | [Dual-track / continuous discovery](https://blog.logrocket.com/product-management/dual-track-agile-continuous-discovery/) |
-| Review gates as go/no-go investment decisions | **Stage-Gate** (Cooper) | [Stage-Gate](https://www.toolshero.com/innovation/stage-gate-process/) |
-| Acceptance tests defined at spec time; *verify* vs *validate* | **V-model** | [V-model V&V](https://www.coleyconsulting.co.uk/v-model-verification-and-validation.htm) |
-| Detail the current wave only; keep the rest at altitude | **progressive elaboration / rolling-wave** | [WBS](https://en.wikipedia.org/wiki/Work_breakdown_structure) |
+Your OS is built around documents called **RFCs** (short for Request for Comments — a term borrowed from internet standards, where it means a living document open to refinement). RFCs are your strategy documents. Each one covers a distinct area of your business. They're called RFCs because they're meant to evolve, not be set in stone. You'll refine them as you learn more about what the system can do.
 
 ---
 
-## Governance Assumptions
+## Your first 90 minutes after Bootstrap
 
-These specs assume:
-- **Silence is not approval.** Agents block and wait; they don't guess past decision boundaries.
-- **Draft before tracked.** Agent work goes to a local/draft folder first; humans approve before it moves to tracked files.
-- **One decision at a time.** Agents present one decision for approval before moving to the next.
-- **Block entries are specific.** A good block names the decision, the options, and a recommendation. A vague block is rejected.
+Bootstrap produces a lot. Don't try to process it all at once. Do these four things before anything else:
 
-Adapt the governing document references in each spec to point to your own system's authority documents.
+1. Read your CLAUDE.md and correct anything that's wrong — pay particular attention to tone and terminology
+2. Read your Values RFC and adjust it to sound like you, not like a consultant wrote it
+3. Pick one RFC that covers your biggest current challenge and spend 20 minutes with Workshop on that alone
+4. Ignore everything else for now — the rest will still be there
 
----
-
-## Compatibility
-
-Designed for use with Claude (Anthropic) in Cowork mode or via Claude Code. The agent specs are plain markdown — they work in any Claude session, and can be installed as Cowork skills or used as prompts.
+The system is designed to be lived in gradually, not consumed in one sitting.
 
 ---
 
-## Origin
+## Want just one skill?
 
-Built and tested at [Business of Software](https://businessofsoftware.org) — a small team running two annual conferences and a growing online community. These tools emerged from real use, not theory.
+- Bootstrap only → [BoSOS-Bootstrap](https://github.com/BoSMark/BoSOS-Bootstrap)
+- Workshop only → [BoSOS-Workshop](https://github.com/BoSMark/BoSOS-Workshop)
+
+---
+
+## More skills, tasks, and agents
+
+Further skills, scheduled tasks, and agent specs are released on an ongoing basis.
+
+**Follow or watch this repo** to get notified when new ones ship.
+
+All BoSMark repos → [github.com/BoSMark](https://github.com/BoSMark)
+
+---
+
+## Stay in the loop
+
+Workshops, user groups, and community support:
+
+**[businessofsoftware.org/updates](https://www.businessofsoftware.org/updates)**
+
+Subscribe for workshop announcements, guided cohorts, and peer community access.
 
 ---
 
 ## Licence
 
-MIT. Use it, adapt it, share it.
+[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+
+If you use or adapt this, please credit Business of Software and link to [businessofsoftware.org](https://businessofsoftware.org). That's all we ask.
+
+---
+
+*Built by Tim Barker, Mark Littlewood and [Business of Software](https://businessofsoftware.org) — helping software founders build profitable, enduring companies since 2007.*
